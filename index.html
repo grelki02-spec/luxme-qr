@@ -1,1 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXME Experience</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: #e9e9ec;
+      font-family: Georgia, serif;
+      color: #2f2f2f;
+    }
 
+    .container {
+      max-width: 760px;
+      margin: 30px auto;
+      background: #ebe5dc;
+      padding: 30px 40px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+      line-height: 1.2;
+      color: #1f1f1f;
+    }
+
+    .intro {
+      text-align: center;
+      font-size: 16px;
+      line-height: 1.6;
+      margin: 30px 0;
+    }
+
+    .section {
+      margin: 28px 0;
+    }
+
+    .section-title {
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .list-item {
+      margin: 4px 0;
+      font-size: 15px;
+    }
+
+    .spacer {
+      height: 10px;
+    }
+
+    .image-box {
+      margin-top: 30px;
+    }
+
+    .image-box img {
+      width: 100%;
+      display: block;
+      opacity: 0.9;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        margin: 10px;
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 22px;
+      }
+
+      .intro {
+        font-size: 14px;
+      }
+
+      .list-item {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 id="title"></h1>
+
+    <div class="intro" id="desc"></div>
+
+    <div class="section">
+      <div class="section-title">Main Restaurant</div>
+      <ul id="restaurant"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Food Court</div>
+      <ul id="foodcourt"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">À la Carte Restaurants (Reservation required)</div>
+      <ul id="alacarte"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Bars</div>
+      <ul id="bars"></ul>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Wellness & Activities</div>
+      <ul id="wellness"></ul>
+    </div>
+
+    <div class="image-box">
+      <img src="hotel.jpg" alt="Hotel View">
+    </div>
+  </div>
+
+  <script>
+    fetch('data.json')
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('title').innerText = data.title || '';
+        document.getElementById('desc').innerText = data.description || '';
+
+        function fillList(id, items) {
+          const ul = document.getElementById(id);
+          ul.innerHTML = '';
+          if (!items || !items.length) return;
+
+          items.forEach(item => {
+            const li = document.createElement('li');
+            li.className = 'list-item';
+            li.innerText = item;
+            ul.appendChild(li);
+          });
+        }
+
+        fillList('restaurant', data.main_restaurant);
+        fillList('foodcourt', data.food_court);
+        fillList('alacarte', data.alacarte_restaurants);
+        fillList('bars', data.bars);
+        fillList('wellness', data.wellness);
+      })
+      .catch(error => {
+        console.error('Error loading data.json:', error);
+      });
+  </script>
+</body>
+</html>
