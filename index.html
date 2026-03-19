@@ -1,183 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LUXME Experience</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LUXME Experience</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 18px;
+      background: #e9e9ec;
+      font-family: Georgia, serif;
+      color: #2f2b28;
+    }
 
-<style>
-body{
-margin:0;
-padding:18px;
-background:#e9e9ec;
-font-family:Georgia, serif;
-color:#2f2b28;
-}
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #ece6dd;
+      padding: 30px 26px 0 26px;
+      box-sizing: border-box;
+    }
 
-.page{
-max-width:560px;
-margin:auto;
-background:#ece6dd;
-padding:30px 26px 0 26px;
-}
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin: 0 0 20px 0;
+      white-space: nowrap;
+    }
 
-/* TITLE */
-h1{
-text-align:center;
-font-size:24px;
-margin-bottom:20px;
-white-space:nowrap;
-}
+    .intro {
+      text-align: justify;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
 
-/* INTRO */
-.intro{
-text-align:justify;
-font-size:14px;
-line-height:1.7;
-margin-bottom:25px;
-}
+    .section {
+      margin-bottom: 18px;
+    }
 
-/* SECTIONS */
-.section{
-margin-bottom:18px;
-}
+    .title {
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
 
-.title{
-font-size:12px;
-letter-spacing:3px;
-font-weight:bold;
-text-transform:uppercase;
-margin-bottom:6px;
-}
+    .item {
+      font-size: 13px;
+      margin: 2px 0;
+    }
 
-.item{
-font-size:13px;
-margin:2px 0;
-}
+    .contact {
+      text-align: center;
+      margin: 18px 0;
+      font-size: 12px;
+    }
 
-/* CONTACT */
-.contact{
-text-align:center;
-margin:18px 0;
-font-size:12px;
-}
+    .image-box {
+      position: relative;
+      margin: 0 -26px;
+    }
 
-/* IMAGE + LOGO */
-.image-box{
-position:relative;
-margin:0 -26px;
-}
+    .main-image {
+      width: 100%;
+      display: block;
+      opacity: 0.45;
+    }
 
-.main-image{
-width:100%;
-display:block;
-opacity:0.45;
-}
+    .logo {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      opacity: 1;
+    }
 
-.logo{
-position:absolute;
-bottom:18px;
-left:50%;
-transform:translateX(-50%);
-width:100px;
-opacity:1;
-}
+    @media (max-width: 600px) {
+      h1 {
+        white-space: normal;
+        font-size: 20px;
+      }
 
-/* MOBILE */
-@media(max-width:600px){
-h1{
-white-space:normal;
-font-size:20px;
-}
+      .intro {
+        font-size: 13px;
+      }
 
-.intro{
-font-size:13px;
-}
-
-.item{
-font-size:12px;
-}
-}
-</style>
-
+      .item {
+        font-size: 12px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <div class="page">
+    <h1 id="title"></h1>
 
-<div class="page">
+    <div class="intro" id="desc"></div>
 
-<h1 id="title"></h1>
+    <div class="section">
+      <div class="title">MAIN RESTAURANT</div>
+      <div id="restaurant"></div>
+    </div>
 
-<div class="intro" id="desc"></div>
+    <div class="section">
+      <div class="title">FOOD COURT</div>
+      <div id="food"></div>
+    </div>
 
-<div class="section">
-<div class="title">MAIN RESTAURANT</div>
-<div id="restaurant"></div>
-</div>
+    <div class="section">
+      <div class="title">A LA CARTE RESTAURANTS</div>
+      <div id="alacarte"></div>
+    </div>
 
-<div class="section">
-<div class="title">FOOD COURT</div>
-<div id="food"></div>
-</div>
+    <div class="section">
+      <div class="title">BARS</div>
+      <div id="bars"></div>
+    </div>
 
-<div class="section">
-<div class="title">A LA CARTE RESTAURANTS</div>
-<div id="alacarte"></div>
-</div>
+    <div class="section">
+      <div class="title">PATISSERIE & AFTERNOON TEA</div>
+      <div id="patisserie"></div>
+    </div>
 
-<div class="section">
-<div class="title">BARS</div>
-<div id="bars"></div>
-</div>
+    <div class="section">
+      <div class="title">WELLNESS & ACTIVITIES</div>
+      <div id="wellness"></div>
+    </div>
 
-<div class="section">
-<div class="title">PATISSERIE & AFTERNOON TEA</div>
-<div id="patisserie"></div>
-</div>
+    <div class="contact" id="contact"></div>
 
-<div class="section">
-<div class="title">WELLNESS & ACTIVITIES</div>
-<div id="wellness"></div>
-</div>
+    <div class="image-box">
+      <img src="hotel.jpg" alt="Hotel" class="main-image">
+      <img src="logo.png" alt="Logo" class="logo">
+    </div>
+  </div>
 
-<div class="contact" id="contact"></div>
+  <script>
+    fetch('data.json')
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(data) {
+        document.getElementById('title').textContent = data.title || '';
+        document.getElementById('desc').textContent = data.description || '';
 
-<div class="image-box">
-<img src="hotel.jpg" class="main-image">
-<img src="logo.png" class="logo">
-</div>
+        function fill(id, arr) {
+          var el = document.getElementById(id);
+          el.innerHTML = '';
+          if (!arr) return;
 
-</div>
+          arr.forEach(function(item) {
+            var row = document.createElement('div');
+            row.className = 'item';
+            row.textContent = item;
+            el.appendChild(row);
+          });
+        }
 
-<script>
-fetch('data.json')
-.then(res=>res.json())
-.then(data=>{
+        fill('restaurant', data.main_restaurant);
+        fill('food', data.food_court);
+        fill('alacarte', data.alacarte);
+        fill('bars', data.bars);
+        fill('patisserie', data.patisserie);
+        fill('wellness', data.wellness);
 
-document.getElementById('title').innerText=data.title;
-document.getElementById('desc').innerText=data.description;
-
-function fill(id,arr){
-let el=document.getElementById(id);
-el.innerHTML="";
-if(!arr) return;
-arr.forEach(item=>{
-el.innerHTML+="<div class='item'>"+item+"</div>";
-});
-}
-
-fill("restaurant",data.main_restaurant);
-fill("food",data.food_court);
-fill("alacarte",data.alacarte);
-fill("bars",data.bars);
-fill("patisserie",data.patisserie);
-fill("wellness",data.wellness);
-
-document.getElementById('contact').innerText=
-"Contact via WhatsApp: "+data.contact;
-
-});
-</script>
-
+        document.getElementById('contact').textContent =
+          'Contact via WhatsApp: ' + (data.contact || '');
+      })
+      .catch(function(error) {
+        console.error('Error loading data.json:', error);
+      });
+  </script>
 </body>
 </html>
