@@ -1,8 +1,8 @@
 {
   "title": "Welcome to your LUXME Experience",
-  "description": "Thank you for choosing our five-star destination. By scanning this QR code, you enjoy seamless access to our curated services, dining concepts and wellness experiences – designed for effortless luxury and comfort. Our team is at your service at all times. Enjoy every moment of your stay.",
+  "description": "Thank you for choosing Grecotel Luxme Kos.Enjoy seamless access to our curated services, dining concepts, and wellness experiences – designed for effortless comfort.Our team is at your service at all times. Enjoy every moment of your stay.",
 
-  "main_restaurant": [
+  "Lagoon main_restaurant": [
     "Breakfast: 07:15 – 10:30",
     "Lunch: 12:30 – 14:30",
     "Dinner: 18:00 – 21:30",
@@ -10,10 +10,9 @@
   ],
 
   "food_court": [
-    "Pool Bar: Creperie & Gelaterie 11:00 – 18:00",
-    "Pool Bar Lunch: 12:30 – 15:30",
-    "Pool Bar Light Fare: 12:30 – 18:00",
-    "Pool Bar Tavernaki: 19:00 – 22:00"
+    "Creperie & Gelaterie 11:00 – 18:00",
+    "Lunch: 12:30 – 15:30",
+    "Light Fare: 12:30 – 18:00",
   ],
 
   "alacarte": [
