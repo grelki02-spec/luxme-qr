@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUXME Experience</title>
+
   <style>
     body {
       margin: 0;
@@ -18,189 +19,146 @@
       margin: 0 auto;
       background: #ece6dd;
       padding: 40px 36px;
-      box-sizing: border-box;
     }
 
     h1 {
       margin: 0 0 24px 0;
       font-size: 28px;
-      line-height: 1.2;
-      color: #1f1f1f;
     }
 
     .intro {
-      max-width: 720px;
-      margin: 0 auto 34px auto;
       text-align: center;
-      font-size: 16px;
-      line-height: 1.8;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 28px 36px;
-      margin-top: 10px;
+      margin-bottom: 30px;
+      line-height: 1.6;
     }
 
     .section {
-      min-width: 0;
-    }
-
-    .section.full {
-      grid-column: 1 / -1;
+      margin: 20px 0;
     }
 
     .section-title {
       font-size: 13px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
       font-weight: bold;
     }
 
     ul {
       list-style: none;
-      margin: 0;
       padding: 0;
+      margin: 0;
     }
 
     .list-item {
-      margin: 6px 0;
-      font-size: 15px;
-      line-height: 1.5;
+      margin: 5px 0;
     }
 
+    /* 📸 IMAGE + LOGO */
     .image-box {
-      margin-top: 34px;
+      position: relative;
+      margin-top: 30px;
     }
 
-    .image-box img {
+    .main-image {
       width: 100%;
       display: block;
     }
 
-    .contact-box {
-      margin-top: 28px;
-      padding-top: 20px;
-      border-top: 1px solid rgba(0,0,0,0.12);
-      text-align: center;
-      font-size: 15px;
+    .logo-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
     }
 
-    .contact-box a {
-      color: inherit;
-      text-decoration: none;
+    .contact {
+      margin-top: 25px;
+      text-align: center;
       font-weight: bold;
     }
 
-    @media (max-width: 768px) {
-      body {
-        padding: 10px;
-      }
-
-      .page {
-        padding: 24px 20px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-
-      .intro {
-        font-size: 15px;
-        line-height: 1.7;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-      }
-
-      .section.full {
-        grid-column: auto;
-      }
-
-      .list-item {
-        font-size: 14px;
-      }
-    }
   </style>
 </head>
+
 <body>
-  <div class="page">
-    <h1 id="title"></h1>
 
-    <div class="intro" id="desc"></div>
+<div class="page">
 
-    <div class="grid">
-      <div class="section">
-        <div class="section-title">Main Restaurant</div>
-        <ul id="restaurant"></ul>
-      </div>
+  <h1 id="title"></h1>
 
-      <div class="section">
-        <div class="section-title">Food Court</div>
-        <ul id="foodcourt"></ul>
-      </div>
+  <div class="intro" id="desc"></div>
 
-      <div class="section">
-        <div class="section-title">À La Carte Restaurants (Reservation required)</div>
-        <ul id="alacarte"></ul>
-      </div>
-
-      <div class="section">
-        <div class="section-title">Bars</div>
-        <ul id="bars"></ul>
-      </div>
-
-      <div class="section full">
-        <div class="section-title">Wellness & Activities</div>
-        <ul id="wellness"></ul>
-      </div>
-    </div>
-
-    <div class="contact-box" id="contact"></div>
-
-    <div class="image-box">
-      <img src="hotel.jpg" alt="Hotel View">
-    </div>
+  <div class="section">
+    <div class="section-title">Main Restaurant</div>
+    <ul id="restaurant"></ul>
   </div>
 
-  <script>
-    fetch('data.json')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('title').innerText = data.title || '';
-        document.getElementById('desc').innerText = data.description || '';
+  <div class="section">
+    <div class="section-title">Food Court</div>
+    <ul id="foodcourt"></ul>
+  </div>
 
-        function fillList(id, items) {
-          const ul = document.getElementById(id);
-          ul.innerHTML = '';
-          if (!items || !items.length) return;
+  <div class="section">
+    <div class="section-title">À La Carte Restaurants</div>
+    <ul id="alacarte"></ul>
+  </div>
 
-          items.forEach(item => {
-            const li = document.createElement('li');
-            li.className = 'list-item';
-            li.innerText = item;
-            ul.appendChild(li);
-          });
-        }
+  <div class="section">
+    <div class="section-title">Bars</div>
+    <ul id="bars"></ul>
+  </div>
 
-        fillList('restaurant', data.main_restaurant);
-        fillList('foodcourt', data.food_court);
-        fillList('alacarte', data.alacarte_restaurants);
-        fillList('bars', data.bars);
-        fillList('wellness', data.wellness);
+  <div class="section">
+    <div class="section-title">Wellness & Activities</div>
+    <ul id="wellness"></ul>
+  </div>
 
-        if (data.contact) {
-          document.getElementById('contact').innerHTML =
-            'Contact via WhatsApp: <a href="https://wa.me/' + data.contact + '">' + data.contact + '</a>';
-        }
-      })
-      .catch(error => {
-        console.error('Error loading data.json:', error);
-      });
-  </script>
+  <div class="contact" id="contact"></div>
+
+  <!-- 📸 ΦΩΤΟ + LOGO -->
+  <div class="image-box">
+    <img src="hotel.jpg" class="main-image">
+    <img src="logo.png" class="logo-overlay">
+  </div>
+
+</div>
+
+<script>
+fetch('data.json')
+.then(res => res.json())
+.then(data => {
+
+document.getElementById('title').innerText = data.title;
+document.getElementById('desc').innerText = data.description;
+
+function fillList(id, items){
+  let ul = document.getElementById(id);
+  ul.innerHTML = "";
+  if(!items) return;
+
+  items.forEach(item => {
+    let li = document.createElement("li");
+    li.className = "list-item";
+    li.innerText = item;
+    ul.appendChild(li);
+  });
+}
+
+fillList("restaurant", data.main_restaurant);
+fillList("foodcourt", data.food_court);
+fillList("alacarte", data.alacarte_restaurants);
+fillList("bars", data.bars);
+fillList("wellness", data.wellness);
+
+if(data.contact){
+  document.getElementById('contact').innerHTML =
+    "Contact via WhatsApp: <a href='https://wa.me/" + data.contact + "'>" + data.contact + "</a>";
+}
+
+});
+</script>
+
 </body>
 </html>
