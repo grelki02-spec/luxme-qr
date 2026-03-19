@@ -7,62 +7,52 @@
   <style>
     body {
       margin: 0;
-      padding: 0;
+      padding: 16px;
       background: #e9e9ec;
-      font-family: Georgia, serif;
-      color: #2f2f2f;
+      font-family: Georgia, "Times New Roman", serif;
+      color: #2f2b28;
     }
 
-    .container {
-      max-width: 760px;
-      margin: 30px auto;
-      background: #ebe5dc;
-      padding: 30px 40px;
+    .page {
+      max-width: 390px;
+      margin: 0 auto;
+      background: #ece6dd;
+      padding: 18px 16px 0 16px;
       box-sizing: border-box;
     }
 
     h1 {
-      margin-top: 0;
+      margin: 0 0 22px 0;
+      text-align: center;
       font-size: 28px;
-      line-height: 1.2;
-      color: #1f1f1f;
+      line-height: 1.15;
+      font-weight: 700;
+      color: #1f1b18;
     }
 
     .intro {
       text-align: center;
-      font-size: 16px;
-      line-height: 1.6;
-      margin: 30px 0;
+      font-size: 12px;
+      line-height: 1.35;
+      margin: 0 auto 18px auto;
+      max-width: 330px;
     }
 
     .section {
-      margin: 28px 0;
+      margin: 0 0 16px 0;
     }
 
     .section-title {
-      font-size: 14px;
-      letter-spacing: 3px;
+      font-size: 11px;
+      letter-spacing: 2.8px;
       text-transform: uppercase;
-      margin-bottom: 10px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
     }
 
-    .list-item {
-      margin: 4px 0;
-      font-size: 15px;
-    }
-
-    .spacer {
-      height: 10px;
-    }
-
-    .image-box {
-      margin-top: 30px;
-    }
-
-    .image-box img {
-      width: 100%;
-      display: block;
-      opacity: 0.9;
+    .section-title.normal-case {
+      text-transform: none;
+      letter-spacing: 2px;
     }
 
     ul {
@@ -71,28 +61,56 @@
       margin: 0;
     }
 
-    @media (max-width: 768px) {
-      .container {
-        margin: 10px;
-        padding: 20px;
+    .list-item {
+      font-size: 10px;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .spacer {
+      height: 10px;
+    }
+
+    .contact {
+      text-align: center;
+      font-size: 10px;
+      margin: 12px 0 22px 0;
+    }
+
+    .image-box {
+      position: relative;
+      margin: 0 -16px 0 -16px;
+    }
+
+    .main-image {
+      width: 100%;
+      display: block;
+      opacity: 0.48;
+    }
+
+    .logo-overlay {
+      position: absolute;
+      left: 50%;
+      bottom: 12px;
+      transform: translateX(-50%);
+      width: 68px;
+      height: auto;
+      opacity: 0.95;
+    }
+
+    @media (max-width: 420px) {
+      .page {
+        max-width: 100%;
       }
 
       h1 {
-        font-size: 22px;
-      }
-
-      .intro {
-        font-size: 14px;
-      }
-
-      .list-item {
-        font-size: 14px;
+        font-size: 24px;
       }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <div class="page">
     <h1 id="title"></h1>
 
     <div class="intro" id="desc"></div>
@@ -107,8 +125,10 @@
       <ul id="foodcourt"></ul>
     </div>
 
+    <div class="spacer"></div>
+
     <div class="section">
-      <div class="section-title">À la Carte Restaurants (Reservation required)</div>
+      <div class="section-title normal-case">A La Carte Restaurants (Reservation required)</div>
       <ul id="alacarte"></ul>
     </div>
 
@@ -117,32 +137,39 @@
       <ul id="bars"></ul>
     </div>
 
+    <div class="spacer"></div>
+
     <div class="section">
       <div class="section-title">Wellness & Activities</div>
       <ul id="wellness"></ul>
     </div>
 
+    <div class="contact" id="contact"></div>
+
     <div class="image-box">
-      <img src="hotel.jpg" alt="Hotel View">
+      <img src="hotel.jpg" alt="Hotel View" class="main-image">
+      <img src="logo.png" alt="Luxme Logo" class="logo-overlay">
     </div>
   </div>
 
   <script>
     fetch('data.json')
-      .then(response => response.json())
-      .then(data => {
-        document.getElementById('title').innerText = data.title || '';
-        document.getElementById('desc').innerText = data.description || '';
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(data) {
+        document.getElementById('title').textContent = data.title || '';
+        document.getElementById('desc').textContent = data.description || '';
 
         function fillList(id, items) {
-          const ul = document.getElementById(id);
+          var ul = document.getElementById(id);
           ul.innerHTML = '';
           if (!items || !items.length) return;
 
-          items.forEach(item => {
-            const li = document.createElement('li');
+          items.forEach(function(item) {
+            var li = document.createElement('li');
             li.className = 'list-item';
-            li.innerText = item;
+            li.textContent = item;
             ul.appendChild(li);
           });
         }
@@ -152,10 +179,22 @@
         fillList('alacarte', data.alacarte_restaurants);
         fillList('bars', data.bars);
         fillList('wellness', data.wellness);
+
+        if (data.contact) {
+          document.getElementById('contact').textContent =
+            'Contact via WhatsApp: ' + formatPhone(data.contact);
+        }
       })
-      .catch(error => {
+      .catch(function(error) {
         console.error('Error loading data.json:', error);
       });
+
+    function formatPhone(phone) {
+      if (phone === '+306949000586') {
+        return '+30 694 900 0586';
+      }
+      return phone;
+    }
   </script>
 </body>
 </html>
