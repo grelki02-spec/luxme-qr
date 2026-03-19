@@ -124,6 +124,11 @@ font-size:12px;
 </div>
 
 <div class="section">
+<div class="title">PATISSERIE & AFTERNOON TEA</div>
+<div id="patisserie"></div>
+</div>
+
+<div class="section">
 <div class="title">WELLNESS & ACTIVITIES</div>
 <div id="wellness"></div>
 </div>
@@ -148,6 +153,7 @@ document.getElementById('desc').innerText=data.description;
 function fill(id,arr){
 let el=document.getElementById(id);
 el.innerHTML="";
+if(!arr) return;
 arr.forEach(item=>{
 el.innerHTML+="<div class='item'>"+item+"</div>";
 });
@@ -157,6 +163,7 @@ fill("restaurant",data.main_restaurant);
 fill("food",data.food_court);
 fill("alacarte",data.alacarte);
 fill("bars",data.bars);
+fill("patisserie",data.patisserie);
 fill("wellness",data.wellness);
 
 document.getElementById('contact').innerText=
