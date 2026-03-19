@@ -5,243 +5,200 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LUXME Experience</title>
   <style>
-    body{
-      margin:0;
-      padding:18px;
-      background:#e9e9ec;
-      font-family:Georgia, serif;
-      color:#2f2b28;
+    body {
+      margin: 0;
+      padding: 18px;
+      background: #e9e9ec;
+      font-family: Georgia, serif;
+      color: #2f2b28;
     }
 
-    .page{
-      max-width:560px;
-      margin:auto;
-      background:#ece6dd;
-      padding:30px 26px 0 26px;
-      box-sizing:border-box;
+    .page {
+      max-width: 560px;
+      margin: 0 auto;
+      background: #ece6dd;
+      padding: 30px 26px 0 26px;
+      box-sizing: border-box;
     }
 
-    .topbar{
-      display:flex;
-      justify-content:flex-end;
-      margin-bottom:12px;
+    h1 {
+      text-align: center;
+      font-size: 24px;
+      margin: 0 0 20px 0;
+      white-space: nowrap;
     }
 
-    .lang-switch{
-      border:1px solid rgba(47,43,40,0.25);
-      background:transparent;
-      padding:6px 10px;
-      font-family:inherit;
-      font-size:11px;
-      cursor:pointer;
+    .intro {
+      text-align: justify;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 25px;
     }
 
-    h1{
-      text-align:center;
-      font-size:24px;
-      margin:0 0 22px 0;
-      white-space:nowrap;
-      letter-spacing:0.2px;
+    .section {
+      margin-bottom: 18px;
     }
 
-    .intro{
-      text-align:justify;
-      font-size:14px;
-      line-height:1.8;
-      margin-bottom:28px;
+    .title {
+      font-size: 12px;
+      letter-spacing: 3px;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 6px;
     }
 
-    .section{
-      margin-bottom:22px;
+    .title.normal {
+      text-transform: none;
+      letter-spacing: 2px;
     }
 
-    .title{
-      font-size:12px;
-      letter-spacing:3px;
-      font-weight:bold;
-      text-transform:uppercase;
-      margin-bottom:7px;
+    .item {
+      font-size: 13px;
+      margin: 2px 0;
+      line-height: 1.5;
     }
 
-    .title.normal{
-      text-transform:none;
-      letter-spacing:2px;
+    .contact {
+      text-align: center;
+      margin: 18px 0;
+      font-size: 12px;
+      line-height: 1.6;
     }
 
-    .item{
-      font-size:13px;
-      margin:3px 0;
-      line-height:1.5;
+    .contact a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(47, 43, 40, 0.3);
+      padding-bottom: 1px;
     }
 
-    .contact{
-      text-align:center;
-      margin:22px 0;
-      font-size:12px;
-      line-height:1.6;
+    .image-box {
+      position: relative;
+      margin: 0 -26px;
     }
 
-    .contact a{
-      color:inherit;
-      text-decoration:none;
-      border-bottom:1px solid rgba(47,43,40,0.3);
-      padding-bottom:1px;
+    .main-image {
+      width: 100%;
+      display: block;
+      opacity: 0.45;
     }
 
-    .image-box{
-      position:relative;
-      margin:0 -26px;
+    .logo {
+      position: absolute;
+      bottom: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      opacity: 1;
     }
 
-    .main-image{
-      width:100%;
-      display:block;
-      opacity:0.45;
-    }
-
-    .logo{
-      position:absolute;
-      bottom:18px;
-      left:50%;
-      transform:translateX(-50%);
-      width:100px;
-      opacity:1;
-    }
-
-    @media(max-width:600px){
-      h1{
-        white-space:normal;
-        font-size:20px;
+    @media (max-width: 600px) {
+      h1 {
+        white-space: normal;
+        font-size: 20px;
       }
 
-      .intro{
-        font-size:13px;
-        line-height:1.7;
+      .intro {
+        font-size: 13px;
       }
 
-      .item{
-        font-size:12px;
+      .item {
+        font-size: 12px;
       }
 
-      .page{
-        padding:24px 18px 0 18px;
+      .page {
+        padding: 24px 18px 0 18px;
       }
 
-      .image-box{
-        margin:0 -18px;
+      .image-box {
+        margin: 0 -18px;
       }
 
-      .logo{
-        width:88px;
+      .logo {
+        width: 88px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="page">
+    <h1 id="title"></h1>
 
-<div class="page">
+    <div class="intro" id="desc"></div>
 
-  <div class="topbar">
-    <button class="lang-switch" id="langBtn">GR</button>
+    <div class="section">
+      <div class="title">MAIN RESTAURANT</div>
+      <div id="restaurant"></div>
+    </div>
+
+    <div class="section">
+      <div class="title">FOOD COURT</div>
+      <div id="food"></div>
+    </div>
+
+    <div class="section">
+      <div class="title">A LA CARTE RESTAURANTS</div>
+      <div id="alacarte"></div>
+    </div>
+
+    <div class="section">
+      <div class="title">BARS</div>
+      <div id="bars"></div>
+    </div>
+
+    <div class="section">
+      <div class="title normal">Patisserie & Chocolaterie</div>
+      <div id="patisserie"></div>
+    </div>
+
+    <div class="section">
+      <div class="title">WELLNESS & ACTIVITIES</div>
+      <div id="wellness"></div>
+    </div>
+
+    <div class="contact" id="contact"></div>
+
+    <div class="image-box">
+      <img src="hotel.jpg" alt="Hotel" class="main-image">
+      <img src="logo.png" alt="Logo" class="logo">
+    </div>
   </div>
 
-  <h1 id="title"></h1>
+  <script>
+    fetch('data.json')
+      .then(function(res) {
+        return res.json();
+      })
+      .then(function(data) {
+        document.getElementById('title').textContent = data.title || '';
+        document.getElementById('desc').textContent = data.description || '';
 
-  <div class="intro" id="desc"></div>
+        function fill(id, arr) {
+          var el = document.getElementById(id);
+          el.innerHTML = '';
+          if (!arr) return;
 
-  <div class="section">
-    <div class="title" id="label_restaurant">MAIN RESTAURANT</div>
-    <div id="restaurant"></div>
-  </div>
+          arr.forEach(function(item) {
+            var row = document.createElement('div');
+            row.className = 'item';
+            row.textContent = item;
+            el.appendChild(row);
+          });
+        }
 
-  <div class="section">
-    <div class="title" id="label_food">FOOD COURT</div>
-    <div id="food"></div>
-  </div>
+        fill('restaurant', data.main_restaurant);
+        fill('food', data.food_court);
+        fill('alacarte', data.alacarte);
+        fill('bars', data.bars);
+        fill('patisserie', data.patisserie);
+        fill('wellness', data.wellness);
 
-  <div class="section">
-    <div class="title" id="label_alacarte">A LA CARTE RESTAURANTS</div>
-    <div id="alacarte"></div>
-  </div>
-
-  <div class="section">
-    <div class="title" id="label_bars">BARS</div>
-    <div id="bars"></div>
-  </div>
-
-  <div class="section">
-    <div class="title normal" id="label_patisserie">Patisserie & Chocolaterie</div>
-    <div id="patisserie"></div>
-  </div>
-
-  <div class="section">
-    <div class="title" id="label_wellness">WELLNESS & ACTIVITIES</div>
-    <div id="wellness"></div>
-  </div>
-
-  <div class="contact" id="contact"></div>
-
-  <div class="image-box">
-    <img src="hotel.jpg" alt="Hotel" class="main-image">
-    <img src="logo.png" alt="Logo" class="logo">
-  </div>
-
-</div>
-
-<script>
-let contentData = null;
-let currentLang = 'en';
-
-fetch('data.json')
-  .then(res => res.json())
-  .then(data => {
-    contentData = data;
-    renderPage();
-  });
-
-function fill(id, arr){
-  let el = document.getElementById(id);
-  el.innerHTML = "";
-  if(!arr) return;
-
-  arr.forEach(item => {
-    el.innerHTML += "<div class='item'>" + item + "</div>";
-  });
-}
-
-function renderPage(){
-  if(!contentData) return;
-
-  const t = contentData[currentLang] || contentData.en;
-
-  document.getElementById('title').innerText = t.title;
-  document.getElementById('desc').innerText = t.description;
-
-  document.getElementById('label_restaurant').innerText = t.labels.restaurant;
-  document.getElementById('label_food').innerText = t.labels.food;
-  document.getElementById('label_alacarte').innerText = t.labels.alacarte;
-  document.getElementById('label_bars').innerText = t.labels.bars;
-  document.getElementById('label_patisserie').innerText = t.labels.patisserie;
-  document.getElementById('label_wellness').innerText = t.labels.wellness;
-
-  fill("restaurant", t.main_restaurant);
-  fill("food", t.food_court);
-  fill("alacarte", t.alacarte);
-  fill("bars", t.bars);
-  fill("patisserie", t.patisserie);
-  fill("wellness", t.wellness);
-
-  document.getElementById('contact').innerHTML =
-    t.contact_label + ' <a href="https://wa.me/' + contentData.whatsapp_raw + '">' + t.contact_display + '</a>';
-
-  document.getElementById('langBtn').innerText = currentLang === 'en' ? 'GR' : 'EN';
-}
-
-document.getElementById('langBtn').addEventListener('click', function(){
-  currentLang = currentLang === 'en' ? 'gr' : 'en';
-  renderPage();
-});
-</script>
-
+        document.getElementById('contact').innerHTML =
+          'Contact via WhatsApp: <a href="https://wa.me/' + data.whatsapp_raw + '">' + data.contact + '</a>';
+      })
+      .catch(function(error) {
+        console.error('Error loading data.json:', error);
+      });
+  </script>
 </body>
 </html>
