@@ -7,24 +7,24 @@
   <style>
     body {
       margin: 0;
-      padding: 16px;
+      padding: 18px;
       background: #e9e9ec;
       font-family: Georgia, "Times New Roman", serif;
       color: #2f2b28;
     }
 
     .page {
-      max-width: 390px;
+      max-width: 540px;
       margin: 0 auto;
       background: #ece6dd;
-      padding: 18px 16px 0 16px;
+      padding: 26px 22px 0 22px;
       box-sizing: border-box;
     }
 
     h1 {
-      margin: 0 0 22px 0;
+      margin: 0 0 24px 0;
       text-align: center;
-      font-size: 28px;
+      font-size: 26px;
       line-height: 1.15;
       font-weight: 700;
       color: #1f1b18;
@@ -32,79 +32,90 @@
 
     .intro {
       text-align: center;
-      font-size: 12px;
-      line-height: 1.35;
-      margin: 0 auto 18px auto;
-      max-width: 330px;
+      font-size: 13px;
+      line-height: 1.45;
+      margin: 0 auto 22px auto;
+      max-width: 430px;
     }
 
     .section {
-      margin: 0 0 16px 0;
+      margin: 0 0 18px 0;
     }
 
     .section-title {
-      font-size: 11px;
-      letter-spacing: 2.8px;
+      font-size: 12px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       font-weight: 700;
-      margin: 0 0 4px 0;
+      margin: 0 0 6px 0;
     }
 
-    .section-title.normal-case {
-      text-transform: none;
-      letter-spacing: 2px;
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
+    .item {
+      font-size: 12px;
+      line-height: 1.35;
       margin: 0;
-    }
-
-    .list-item {
-      font-size: 10px;
-      line-height: 1.25;
-      margin: 0;
-    }
-
-    .spacer {
-      height: 10px;
     }
 
     .contact {
       text-align: center;
-      font-size: 10px;
-      margin: 12px 0 22px 0;
+      font-size: 11px;
+      margin: 16px 0 22px 0;
     }
 
     .image-box {
       position: relative;
-      margin: 0 -16px 0 -16px;
+      margin: 0 -22px 0 -22px;
     }
 
     .main-image {
       width: 100%;
       display: block;
-      opacity: 0.48;
+      opacity: 0.42;
     }
 
     .logo-overlay {
       position: absolute;
       left: 50%;
-      bottom: 12px;
+      bottom: 14px;
       transform: translateX(-50%);
-      width: 68px;
+      width: 96px;
       height: auto;
-      opacity: 0.95;
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
+      body {
+        padding: 12px;
+      }
+
       .page {
         max-width: 100%;
+        padding: 22px 18px 0 18px;
       }
 
       h1 {
-        font-size: 24px;
+        font-size: 22px;
+      }
+
+      .intro {
+        font-size: 12px;
+      }
+
+      .section-title {
+        font-size: 11px;
+        letter-spacing: 2.5px;
+      }
+
+      .item {
+        font-size: 11px;
+      }
+
+      .image-box {
+        margin: 0 -18px 0 -18px;
+      }
+
+      .logo-overlay {
+        width: 82px;
+        bottom: 12px;
       }
     }
   </style>
@@ -116,39 +127,35 @@
     <div class="intro" id="desc"></div>
 
     <div class="section">
-      <div class="section-title">Main Restaurant</div>
-      <ul id="restaurant"></ul>
+      <div class="section-title">MAIN RESTAURANT</div>
+      <div id="restaurant"></div>
     </div>
 
     <div class="section">
-      <div class="section-title">Food Court</div>
-      <ul id="foodcourt"></ul>
-    </div>
-
-    <div class="spacer"></div>
-
-    <div class="section">
-      <div class="section-title normal-case">A La Carte Restaurants (Reservation required)</div>
-      <ul id="alacarte"></ul>
+      <div class="section-title">FOOD COURT</div>
+      <div id="food"></div>
     </div>
 
     <div class="section">
-      <div class="section-title">Bars</div>
-      <ul id="bars"></ul>
+      <div class="section-title">A LA CARTE RESTAURANTS</div>
+      <div id="alacarte"></div>
     </div>
 
-    <div class="spacer"></div>
+    <div class="section">
+      <div class="section-title">BARS</div>
+      <div id="bars"></div>
+    </div>
 
     <div class="section">
-      <div class="section-title">Wellness & Activities</div>
-      <ul id="wellness"></ul>
+      <div class="section-title">WELLNESS & ACTIVITIES</div>
+      <div id="wellness"></div>
     </div>
 
     <div class="contact" id="contact"></div>
 
     <div class="image-box">
       <img src="hotel.jpg" alt="Hotel View" class="main-image">
-      <img src="logo.png" alt="Luxme Logo" class="logo-overlay">
+      <img src="logo.png" alt="LUXME Logo" class="logo-overlay">
     </div>
   </div>
 
@@ -161,40 +168,31 @@
         document.getElementById('title').textContent = data.title || '';
         document.getElementById('desc').textContent = data.description || '';
 
-        function fillList(id, items) {
-          var ul = document.getElementById(id);
-          ul.innerHTML = '';
-          if (!items || !items.length) return;
+        function fill(id, arr) {
+          var el = document.getElementById(id);
+          el.innerHTML = '';
+          if (!arr || !arr.length) return;
 
-          items.forEach(function(item) {
-            var li = document.createElement('li');
-            li.className = 'list-item';
-            li.textContent = item;
-            ul.appendChild(li);
+          arr.forEach(function(item) {
+            var row = document.createElement('div');
+            row.className = 'item';
+            row.textContent = item;
+            el.appendChild(row);
           });
         }
 
-        fillList('restaurant', data.main_restaurant);
-        fillList('foodcourt', data.food_court);
-        fillList('alacarte', data.alacarte_restaurants);
-        fillList('bars', data.bars);
-        fillList('wellness', data.wellness);
+        fill('restaurant', data.main_restaurant);
+        fill('food', data.food_court);
+        fill('alacarte', data.alacarte);
+        fill('bars', data.bars);
+        fill('wellness', data.wellness);
 
-        if (data.contact) {
-          document.getElementById('contact').textContent =
-            'Contact via WhatsApp: ' + formatPhone(data.contact);
-        }
+        document.getElementById('contact').textContent =
+          'Contact via WhatsApp: ' + (data.contact || '');
       })
       .catch(function(error) {
         console.error('Error loading data.json:', error);
       });
-
-    function formatPhone(phone) {
-      if (phone === '+306949000586') {
-        return '+30 694 900 0586';
-      }
-      return phone;
-    }
   </script>
 </body>
 </html>
