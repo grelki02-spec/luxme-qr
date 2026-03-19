@@ -143,32 +143,31 @@ h1{white-space:normal;font-size:20px;}
 
 <script>
 fetch('data.json')
-.then(function(res){
-return res.json();
-})
-.then(function(data){
+.then(res=>res.json())
+.then(data=>{
 
-document.getElementById('title').innerText=data.title || '';
-document.getElementById('desc').innerText=data.description || '';
+document.getElementById('title').innerText=data.title;
+document.getElementById('desc').innerText=data.description;
 
-function fill(id, arr){
-let el = document.getElementById(id);
-el.innerHTML = "";
+function fill(id,arr){
+let el=document.getElementById(id);
+el.innerHTML="";
 if(!arr) return;
-
-arr.forEach(function(item){
-el.innerHTML += "<div class='item'>" + item + "</div>";
+arr.forEach(item=>{
+el.innerHTML+="<div class='item'>"+item+"</div>";
 });
 }
 
-fill("restaurant", data.main_restaurant);
-fill("food", data.food_court);
-fill("alacarte", data.alacarte);
-fill("bars", data.bars);
-fill("wellness", data.wellness);
+fill("restaurant",data.main_restaurant);
+fill("food",data.food_court);
+fill("alacarte",data.alacarte);
+fill("bars",data.bars);
+fill("wellness",data.wellness);
 
-document.getElementById('note').innerText = data.note || '';
-document.getElementById('contact').innerHTML = data.contact || '';
+document.getElementById('note').innerText=data.note;
+
+document.getElementById('contact').innerHTML =
+'Contact us via WhatsApp: <a href="https://wa.me/' + data.whatsapp + '">' + data.phone + '</a>';
 
 });
 </script>
