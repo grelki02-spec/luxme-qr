@@ -1,6 +1,5 @@
 {
   "title": "Welcome to your LUXME Experience",
-
   "description": "Thank you for choosing our five-star destination. By scanning this QR code, you enjoy seamless access to our curated services, dining concepts and wellness experiences – designed for effortless luxury and comfort. Our team is at your service at all times. Enjoy every moment of your stay.",
 
   "main_restaurant": [
@@ -32,8 +31,8 @@
   ],
 
   "patisserie": [
-   "Afternoon Tea (reservation is required): 15:30 – 17:00"
-    "Patisserie & Chocolaterie: 19:30 – 21:30"
+    "Afternoon Tea: 15:30 – 17:00",
+    "PATISSERIE & CHOCOLATERIE: 19:30 – 21:30"
   ],
 
   "wellness": [
