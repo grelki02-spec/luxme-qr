@@ -1,94 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
+
+<title>LUXME Experience</title>
+
+<style>
+
+body{
+margin:0;
+padding:18px;
+background:#e9e9ec;
+font-family:Georgia,serif;
+color:#2f2b28;
+}
+
+.page{
+max-width:560px;
+margin:auto;
+background:#ece6dd;
+padding:30px 26px 0;
+}
+
+h1{
+text-align:center;
+font-size:24px;
+margin-bottom:20px;
+}
+
+.intro{
+text-align:justify;
+font-size:14px;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+.section{
+margin-bottom:18px;
+}
+
+.title{
+font-size:12px;
+font-weight:bold;
+letter-spacing:3px;
+text-transform:uppercase;
+margin-bottom:6px;
+}
+
+.item{
+font-size:13px;
+margin:2px 0;
+}
+
+.note{
+text-align:center;
+font-style:italic;
+font-size:12px;
+margin-top:20px;
+}
+
+.contact{
+text-align:center;
+font-size:12px;
+margin-top:10px;
+line-height:1.8;
+}
+
+.contact a{
+color:inherit;
+text-decoration:none;
+border-bottom:1px solid #333;
+}
+
+.image-box{
+position:relative;
+margin:0 -26px;
+}
+
+.main-image{
+width:100%;
+opacity:.45;
+display:block;
+}
+
+.logo{
+position:absolute;
+bottom:18px;
+left:50%;
+transform:translateX(-50%);
+width:100px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<h1 id="title"></h1>
+
+<div class="intro" id="desc"></div>
+
+<div class="section">
+<div class="title">LAGOON - MAIN RESTAURANT</div>
+<div id="restaurant"></div>
+</div>
+
+<div class="section">
+<div class="title">FOOD COURT</div>
+<div id="food"></div>
+</div>
+
+<div class="section">
+<div class="title">A LA CARTE RESTAURANTS</div>
+<div id="alacarte"></div>
+</div>
+
+<div class="section">
+<div class="title">BARS</div>
+<div id="bars"></div>
+</div>
+
+<div class="section">
+<div class="title">SERVICES</div>
+<div id="services"></div>
+</div>
+
+<div class="section">
+<div class="title">WELLNESS & ACTIVITIES</div>
+<div id="wellness"></div>
+</div>
+
+<div class="note" id="note"></div>
+
+<div class="contact" id="contact"></div>
+
+<div class="contact" id="roomphone"></div>
+
+<div class="image-box">
+
+<img src="hotel.jpg"
+class="main-image">
+
+<img src="LOGO.png"
+class="logo">
+
+</div>
+
+</div>
+
 <script>
 
 fetch("data.json")
 
-.then(res => res.json())
+.then(res=>res.json())
 
-.then(data => {
+.then(data=>{
 
-document.getElementById("title").innerText =
-data.title;
+document.getElementById("title").innerText=data.title;
 
-document.getElementById("desc").innerText =
-data.description;
+document.getElementById("desc").innerText=data.description;
 
 function fill(id,array){
 
-let el =
-document.getElementById(id);
+let el=document.getElementById(id);
 
 el.innerHTML="";
 
-if(!array) return;
+if(!array)return;
 
 array.forEach(item=>{
 
-el.innerHTML +=
+el.innerHTML+=
 `<div class="item">${item}</div>`;
 
 });
 
 }
 
-fill(
-"restaurant",
-data.main_restaurant
-);
+fill("restaurant",data.main_restaurant);
 
-fill(
-"food",
-data.food_court
-);
+fill("food",data.food_court);
 
-fill(
-"alacarte",
-data.alacarte
-);
+fill("alacarte",data.alacarte);
 
-fill(
-"bars",
-data.bars
-);
+fill("bars",data.bars);
 
-fill(
-"services",
-data.services
-);
+fill("services",data.services);
 
-fill(
-"wellness",
-data.wellness
-);
+fill("wellness",data.wellness);
 
-document.getElementById(
-"note"
-).innerText =
-data.note || "";
+document.getElementById("note").innerText=
+data.note;
 
-document.getElementById(
-"contact"
-).innerHTML =
+document.getElementById("contact").innerHTML=
 
 `Contact us via WhatsApp:
 <a href="https://wa.me/${data.whatsapp}">
 ${data.phone}
 </a>`;
 
-document.getElementById(
-"roomphone"
-).innerText =
-
-data.room_phone || "";
+document.getElementById("roomphone").innerText=
+data.room_phone;
 
 })
 
-.catch(error => {
-
-console.log(
-"Error:",
-error
-);
-
-});
+.catch(console.error);
 
 </script>
+
+</body>
+
+</html>
