@@ -1,54 +1,54 @@
 {
-"title":"Welcome to your LUXME Experience",
+  "title": "Welcome to your LUXME Experience",
 
-"description":"Thank you for choosing Grecotel Luxme Kos. Enjoy seamless access to our curated services, dining concepts, and wellness experiences – designed for effortless comfort. Our team is at your service at all times. Enjoy every moment of your stay.",
+  "description": "Thank you for choosing Grecotel Luxme Kos. Enjoy seamless access to our curated services, dining concepts, and wellness experiences – designed for effortless comfort. Our team is at your service at all times. Enjoy every moment of your stay.",
 
-"main_restaurant":[
-"Breakfast: 07:15 – 10:30",
-"Lunch: 12:30 – 14:30",
-"Dinner: 18:00 – 21:30",
-"Late Night Snack: 23:00 – 01:00"
-],
+  "main_restaurant": [
+    "Breakfast: 07:15 – 10:30",
+    "Lunch: 12:30 – 14:30",
+    "Dinner: 18:00 – 21:30",
+    "Late Night Snack: 23:00 – 01:00"
+  ],
 
-"food_court":[
-"Creperie & Gelaterie 11:00 – 18:00",
-"Lunch (Buffet Style): 12:30 – 15:30",
-"Light Fare: 15:30 – 18:00"
-],
+  "food_court": [
+    "Creperie & Gelaterie: 11:00 – 18:00",
+    "Lunch (Buffet Style): 12:30 – 15:30",
+    "Light Fare: 15:30 – 18:00"
+  ],
 
-"alacarte":[
-"Finicia – Italian & Hot stone specialties: 18:30 – 21:30",
-"1930s Bar Restaurant – Fine Dining: 18:30 – 21:30",
-"Tavernaki – Greek Taverna: 18:30 – 21:30",
-"Asiana – Asian Restaurant: 18:30 – 21:30"
-],
+  "alacarte": [
+    "Finicia – Italian & Hot stone specialties: 18:30 – 21:30",
+    "1930s Bar Restaurant – Fine Dining: 18:30 – 21:30",
+    "Tavernaki – Greek Taverna: 18:30 – 21:30",
+    "Asiana – Asian Restaurant: 18:30 – 21:30"
+  ],
 
-"bars":[
-"1930s Bar restaurant: 09:00 – 00:30",
-"Lobby Bar: 15:30 – 00:00",
-"Coral Pool Bar: 10:00 – 00:00",
-"Garden Pool Bar: 10:00 – 18:00",
-"Triton Beach Bar: 10:00 – 17:30",
-"Hippocrates Open Bar: 20:00 – 22:00"
-],
+  "bars": [
+    "1930s Bar restaurant: 09:00 – 00:30",
+    "Lobby Bar: 15:30 – 00:00",
+    "Coral Pool Bar: 10:00 – 00:00",
+    "Garden Pool Bar: 10:00 – 18:00",
+    "Triton Beach Bar: 10:00 – 17:30",
+    "Hippocrates Open Bar: 20:00 – 22:00"
+  ],
 
-"services":[
-"Afternoon Tea*: 15:30 – 17:30",
-"Chocolaterie: 19:30 – 21:30",
-"Room Service (Extra Charge): 07:30 – 01:30 (dial 1 for orders)"
-],
+  "services": [
+    "Afternoon Tea*: 15:30 – 17:30",
+    "Chocolaterie: 19:30 – 21:30",
+    "Room Service (Extra Charge): 07:30 – 01:30 (dial 1 for orders)"
+  ],
 
-"wellness":[
-"Spa: 10:00 – 18:00",
-"Indoor Gym: 07:00 – 20:00",
-"Grecoland: 10:00 – 17:00"
-],
+  "wellness": [
+    "Spa: 10:00 – 18:00",
+    "Indoor Gym: 07:00 – 20:00",
+    "Grecoland: 10:00 – 17:00"
+  ],
 
-"note":"*Reservations are required",
+  "note": "*Reservations are required",
 
-"phone":"+30 694 900 0586",
+  "phone": "+30 694 900 0586",
 
-"whatsapp":"306949000586",
+  "whatsapp": "306949000586",
 
-"room_phone":"Guests staying in the rooms may dial 0 from their room telephone for assistance."
+  "room_phone": "Guests staying in the rooms may dial 0 from their room telephone for assistance."
 }
