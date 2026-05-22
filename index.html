@@ -1,44 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LUXME Experience</title>
+
+<style>
+
+body{
+margin:0;
+padding:18px;
+background:#e9e9ec;
+font-family:Georgia,serif;
+color:#2f2b28;
+}
+
+.page{
+max-width:560px;
+margin:auto;
+background:#ece6dd;
+padding:30px;
+}
+
+h1{
+text-align:center;
+font-size:24px;
+}
+
+.intro{
+text-align:justify;
+line-height:1.7;
+margin-bottom:25px;
+}
+
+.section{
+margin-bottom:18px;
+}
+
+.title{
+font-size:12px;
+font-weight:bold;
+letter-spacing:3px;
+margin-bottom:8px;
+}
+
+.item{
+margin:3px 0;
+}
+
+.note,
+.contact{
+text-align:center;
+margin-top:15px;
+font-size:12px;
+}
+
+.image-box{
+position:relative;
+margin:0 -30px;
+}
+
+.main-image{
+width:100%;
+opacity:.45;
+}
+
+.logo{
+position:absolute;
+left:50%;
+bottom:18px;
+transform:translateX(-50%);
+width:100px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="page">
+
+<h1 id="title"></h1>
+
+<div class="intro" id="desc"></div>
+
+<div class="section">
+<div class="title">LAGOON - MAIN RESTAURANT</div>
+<div id="restaurant"></div>
+</div>
+
+<div class="section">
+<div class="title">FOOD COURT</div>
+<div id="food"></div>
+</div>
+
+<div class="section">
+<div class="title">A LA CARTE RESTAURANTS</div>
+<div id="alacarte"></div>
+</div>
+
+<div class="section">
+<div class="title">BARS</div>
+<div id="bars"></div>
+</div>
+
+<div class="section">
+<div class="title">SERVICES</div>
+<div id="services"></div>
+</div>
+
+<div class="section">
+<div class="title">WELLNESS & ACTIVITIES</div>
+<div id="wellness"></div>
+</div>
+
+<div class="note" id="note"></div>
+
+<div class="contact" id="contact"></div>
+
+<div class="contact" id="roomphone"></div>
+
+<div class="image-box">
+
+<img src="hotel.jpg" class="main-image">
+
+<img src="LOGO.png" class="logo">
+
+</div>
+
+</div>
+
 <script>
 
-fetch("./data.json")
+fetch("data.json")
 
-.then(function(response){
+.then(res=>res.json())
 
-return response.json();
-
-})
-
-.then(function(data){
-
-document.getElementById("title").textContent =
-data.title || "";
-
-document.getElementById("desc").textContent =
-data.description || "";
+.then(data=>{
 
 function fill(id,items){
 
-var container =
-document.getElementById(id);
+let el=document.getElementById(id);
 
-if(!container)return;
+el.innerHTML="";
 
-container.innerHTML="";
+(items||[]).forEach(item=>{
 
-(items||[]).forEach(function(item){
-
-var row =
-document.createElement("div");
-
-row.className="item";
-
-row.textContent=item;
-
-container.appendChild(row);
+el.innerHTML+=
+'<div class="item">'+
+item+
+'</div>';
 
 });
 
 }
+
+title.innerText=data.title;
+
+desc.innerText=data.description;
 
 fill("restaurant",data.main_restaurant);
 
@@ -52,30 +173,22 @@ fill("services",data.services);
 
 fill("wellness",data.wellness);
 
-document.getElementById("note").textContent =
-data.note || "";
+note.innerText=data.note;
 
-document.getElementById("contact").innerHTML =
-
-'Contact us via WhatsApp: <a href="https://wa.me/' +
-(data.whatsapp||"") +
-'">' +
-(data.phone||"") +
+contact.innerHTML=
+'Contact us via WhatsApp: <a href="https://wa.me/'+
+data.whatsapp+
+'">'+
+data.phone+
 '</a>';
 
-document.getElementById("roomphone").textContent =
-
-data.room_phone || "";
-
-})
-
-.catch(function(err){
-
-document.body.innerHTML =
-"<h3 style='text-align:center'>Error loading data.json</h3>";
-
-console.log(err);
+roomphone.innerText=
+data.room_phone;
 
 });
 
 </script>
+
+</body>
+
+</html>
