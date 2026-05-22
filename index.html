@@ -3,192 +3,84 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>LUXME Experience</title>
-
 <style>
-
-body{
-margin:0;
-padding:18px;
-background:#e9e9ec;
-font-family:Georgia,serif;
-color:#2f2b28;
-}
-
-.page{
-max-width:560px;
-margin:auto;
-background:#ece6dd;
-padding:30px;
-}
-
-h1{
-text-align:center;
-font-size:24px;
-}
-
-.intro{
-text-align:justify;
-line-height:1.7;
-margin-bottom:25px;
-}
-
-.section{
-margin-bottom:18px;
-}
-
-.title{
-font-size:12px;
-font-weight:bold;
-letter-spacing:3px;
-margin-bottom:8px;
-}
-
-.item{
-margin:3px 0;
-}
-
-.note,
-.contact{
-text-align:center;
-margin-top:15px;
-font-size:12px;
-}
-
-.image-box{
-position:relative;
-margin:0 -30px;
-}
-
-.main-image{
-width:100%;
-opacity:.45;
-}
-
-.logo{
-position:absolute;
-left:50%;
-bottom:18px;
-transform:translateX(-50%);
-width:100px;
-}
-
+body{margin:0;padding:18px;background:#e9e9ec;font-family:Georgia,serif;color:#2f2b28;}
+.page{max-width:560px;margin:auto;background:#ece6dd;padding:30px;}
+h1{text-align:center;font-size:24px;}
+.intro{text-align:justify;line-height:1.7;margin-bottom:25px;}
+.section{margin-bottom:18px;}
+.title{font-size:12px;font-weight:bold;letter-spacing:3px;margin-bottom:8px;text-transform:uppercase;}
+.item{margin:3px 0;font-size:13px;}
+.note,.contact{text-align:center;margin-top:15px;font-size:12px;}
+.contact a{color:inherit;}
+.image-box{position:relative;margin:0 -30px;}
+.main-image{width:100%;opacity:.45;display:block;}
+.logo{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);width:100px;}
 </style>
-
 </head>
-
 <body>
 
 <div class="page">
-
 <h1 id="title"></h1>
-
 <div class="intro" id="desc"></div>
 
-<div class="section">
-<div class="title">LAGOON - MAIN RESTAURANT</div>
-<div id="restaurant"></div>
-</div>
-
-<div class="section">
-<div class="title">FOOD COURT</div>
-<div id="food"></div>
-</div>
-
-<div class="section">
-<div class="title">A LA CARTE RESTAURANTS</div>
-<div id="alacarte"></div>
-</div>
-
-<div class="section">
-<div class="title">BARS</div>
-<div id="bars"></div>
-</div>
-
-<div class="section">
-<div class="title">SERVICES</div>
-<div id="services"></div>
-</div>
-
-<div class="section">
-<div class="title">WELLNESS & ACTIVITIES</div>
-<div id="wellness"></div>
-</div>
+<div class="section"><div class="title">LAGOON - MAIN RESTAURANT</div><div id="restaurant"></div></div>
+<div class="section"><div class="title">FOOD COURT</div><div id="food"></div></div>
+<div class="section"><div class="title">A LA CARTE RESTAURANTS</div><div id="alacarte"></div></div>
+<div class="section"><div class="title">BARS</div><div id="bars"></div></div>
+<div class="section"><div class="title">SERVICES</div><div id="services"></div></div>
+<div class="section"><div class="title">WELLNESS & ACTIVITIES</div><div id="wellness"></div></div>
 
 <div class="note" id="note"></div>
-
 <div class="contact" id="contact"></div>
-
 <div class="contact" id="roomphone"></div>
 
 <div class="image-box">
-
 <img src="hotel.jpg" class="main-image">
-
 <img src="LOGO.png" class="logo">
-
 </div>
-
 </div>
 
 <script>
+fetch("./data.json")
+.then(function(response){ return response.json(); })
+.then(function(data){
 
-fetch("data.json")
+document.getElementById("title").textContent = data.title || "";
+document.getElementById("desc").textContent = data.description || "";
 
-.then(res=>res.json())
-
-.then(data=>{
-
-function fill(id,items){
-
-let el=document.getElementById(id);
-
-el.innerHTML="";
-
-(items||[]).forEach(item=>{
-
-el.innerHTML+=
-'<div class="item">'+
-item+
-'</div>';
-
-});
-
+function fill(id, items){
+  var el = document.getElementById(id);
+  el.innerHTML = "";
+  (items || []).forEach(function(item){
+    var div = document.createElement("div");
+    div.className = "item";
+    div.textContent = item;
+    el.appendChild(div);
+  });
 }
 
-title.innerText=data.title;
+fill("restaurant", data.main_restaurant);
+fill("food", data.food_court);
+fill("alacarte", data.alacarte);
+fill("bars", data.bars);
+fill("services", data.services);
+fill("wellness", data.wellness);
 
-desc.innerText=data.description;
+document.getElementById("note").textContent = data.note || "";
 
-fill("restaurant",data.main_restaurant);
+document.getElementById("contact").innerHTML =
+'Contact us via WhatsApp: <a href="https://wa.me/' + data.whatsapp + '">' + data.phone + '</a>';
 
-fill("food",data.food_court);
+document.getElementById("roomphone").textContent = data.room_phone || "";
 
-fill("alacarte",data.alacarte);
-
-fill("bars",data.bars);
-
-fill("services",data.services);
-
-fill("wellness",data.wellness);
-
-note.innerText=data.note;
-
-contact.innerHTML=
-'Contact us via WhatsApp: <a href="https://wa.me/'+
-data.whatsapp+
-'">'+
-data.phone+
-'</a>';
-
-roomphone.innerText=
-data.room_phone;
-
+})
+.catch(function(error){
+document.body.innerHTML = "<p style='text-align:center'>Error loading page. Check data.json.</p>";
+console.log(error);
 });
-
 </script>
 
 </body>
-
 </html>
