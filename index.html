@@ -1,95 +1,80 @@
 <script>
 
-fetch("data.json")
+fetch("./data.json")
 
-.then(function(res){
-return res.json();
+.then(function(response){
+
+return response.json();
+
 })
 
 .then(function(data){
 
-document.getElementById("title").innerText=
+document.getElementById("title").textContent =
 data.title || "";
 
-document.getElementById("desc").innerText=
+document.getElementById("desc").textContent =
 data.description || "";
 
 function fill(id,items){
 
-var el=
+var container =
 document.getElementById(id);
 
-el.innerHTML="";
+if(!container)return;
 
-if(!items)return;
+container.innerHTML="";
 
-items.forEach(function(item){
+(items||[]).forEach(function(item){
 
-el.innerHTML +=
-'<div class="item">'+
-item+
-'</div>';
+var row =
+document.createElement("div");
+
+row.className="item";
+
+row.textContent=item;
+
+container.appendChild(row);
 
 });
 
 }
 
-fill(
-"restaurant",
-data.main_restaurant
-);
+fill("restaurant",data.main_restaurant);
 
-fill(
-"food",
-data.food_court
-);
+fill("food",data.food_court);
 
-fill(
-"alacarte",
-data.alacarte
-);
+fill("alacarte",data.alacarte);
 
-fill(
-"bars",
-data.bars
-);
+fill("bars",data.bars);
 
-fill(
-"services",
-data.services
-);
+fill("services",data.services);
 
-fill(
-"wellness",
-data.wellness
-);
+fill("wellness",data.wellness);
 
-document.getElementById(
-"note"
-).innerText=
+document.getElementById("note").textContent =
 data.note || "";
 
-document.getElementById(
-"contact"
-).innerHTML=
+document.getElementById("contact").innerHTML =
 
 'Contact us via WhatsApp: <a href="https://wa.me/' +
-data.whatsapp +
+(data.whatsapp||"") +
 '">' +
-data.phone +
+(data.phone||"") +
 '</a>';
 
-document.getElementById(
-"roomphone"
-).innerText=
+document.getElementById("roomphone").textContent =
 
 data.room_phone || "";
 
 })
 
-.catch(function(error){
+.catch(function(err){
 
-console.log(error);
+document.body.innerHTML =
+"<h3 style='text-align:center'>Error loading data.json</h3>";
+
+console.log(err);
 
 });
 
